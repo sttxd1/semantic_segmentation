@@ -1,5 +1,7 @@
 from deeplab_v3_plus.models.backbone import resnet
 
+from deeplab_v3_plus.models.backbone import mobilenetv2
+
 
 def build_backbone(backbone, output_stride):
     """
@@ -18,5 +20,18 @@ def build_backbone(backbone, output_stride):
 
         model = getattr(resnet, backbone)
         return model(pretrained=True, progress=True, replace_stride_with_dilation=replace_stride_with_dilation)
+    
+
+    elif backbone in mobilenetv2.__all__:
+        if output_stride == 16:
+            output_stride = 16  # MobileNetV2 handles its own stride internally
+        elif output_stride == 8:
+            output_stride = 8  # MobileNetV2 handles its own stride internally
+        else:
+            raise NotImplementedError
+
+        model = getattr(mobilenetv2, backbone)
+        return model(pretrained=True, progress=True, output_stride=output_stride)
+
     else:
         raise NotImplementedError

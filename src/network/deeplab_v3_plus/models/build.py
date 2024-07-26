@@ -11,6 +11,7 @@ def build_xception(cfg):
 
 
 def build_deeplabv3_plus(cfg):
+    
     net = DeepLabV3Plus(in_channels=cfg.DATASET.IN_CHANNELS,
                         out_channels=cfg.DATASET.NUM_CLASSES,
                         backbone=cfg.MODEL.BACKBONE,

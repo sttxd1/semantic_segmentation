@@ -43,8 +43,33 @@ class MyResNet(ResNet):
         return out_dict
 
 
-def _resnet(arch, block, layers, pretrained, progress, **kwargs):
-    model = MyResNet(block, layers, **kwargs)
+# def _resnet(arch, block, layers, pretrained, progress, **kwargs):
+#     model = MyResNet(block, layers, **kwargs)
+#     if pretrained:
+#         state_dict = load_state_dict_from_url(model_urls[arch], progress=progress)
+#         state_dict.pop('fc.weight', None)
+#         state_dict.pop('fc.bias', None)
+#         model.load_state_dict(state_dict)
+#     return model
+
+# def resnet18(pretrained=False, progress=True, **kwargs):
+#     r"""ResNet-18 model from
+#     `"Deep Residual Learning for Image Recognition" <https://arxiv.org/pdf/1512.03385.pdf>`_
+
+#     Args:
+#         pretrained (bool): If True, returns a model pre-trained on ImageNet
+#         progress (bool): If True, displays a progress bar of the download to stderr
+#     """
+#     return _resnet('resnet18', BasicBlock, [2, 2, 2, 2], pretrained, progress,
+#                    **kwargs)
+
+def _resnet(arch, block, layers, pretrained, progress, replace_stride_with_dilation=None, **kwargs):
+    if replace_stride_with_dilation is None:
+        replace_stride_with_dilation = [False, False, False]
+    elif block == BasicBlock and any(replace_stride_with_dilation):
+        raise NotImplementedError("Dilation > 1 not supported in BasicBlock")
+
+    model = MyResNet(block, layers, replace_stride_with_dilation=replace_stride_with_dilation, **kwargs)
     if pretrained:
         state_dict = load_state_dict_from_url(model_urls[arch], progress=progress)
         state_dict.pop('fc.weight', None)
@@ -54,15 +79,8 @@ def _resnet(arch, block, layers, pretrained, progress, **kwargs):
 
 
 def resnet18(pretrained=False, progress=True, **kwargs):
-    r"""ResNet-18 model from
-    `"Deep Residual Learning for Image Recognition" <https://arxiv.org/pdf/1512.03385.pdf>`_
+    return _resnet('resnet18', BasicBlock, [2, 2, 2, 2], pretrained, progress, **kwargs)
 
-    Args:
-        pretrained (bool): If True, returns a model pre-trained on ImageNet
-        progress (bool): If True, displays a progress bar of the download to stderr
-    """
-    return _resnet('resnet18', BasicBlock, [2, 2, 2, 2], pretrained, progress,
-                   **kwargs)
 
 
 def resnet34(pretrained=False, progress=True, **kwargs):

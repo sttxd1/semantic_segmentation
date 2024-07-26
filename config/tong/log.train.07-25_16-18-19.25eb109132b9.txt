@@ -1,0 +1,79 @@
+2024-07-25 16:18:19,447 deeplab INFO: Using 1 GPUs
+2024-07-25 16:18:19,447 deeplab INFO: Namespace(config_file='/home/st/scooter_ws/semantic_mapping_v2/config/tong.yaml', opts=[])
+2024-07-25 16:18:19,447 deeplab INFO: Loaded configuration file /home/st/scooter_ws/semantic_mapping_v2/config/tong.yaml
+2024-07-25 16:18:19,447 deeplab INFO: Running with config:
+AUTO_RESUME: True
+DATALOADER:
+  DROP_LAST: True
+  NUM_WORKERS: 0
+  PIN_MEMORY: True
+DATASET:
+  IN_CHANNELS: 0
+  NAME: Mapillary
+  NUM_CLASSES: 0
+  ROOT_DIR: 
+  TEST: 
+  TRAIN: 
+  VAL: 
+MODEL:
+  ASPP:
+    ATROUS_CHANNELS: [256, 256, 256, 256]
+    ATROUS_DILATION: [1, 1, 1, 1]
+    ATROUS_KERNEL_SIZE: [1, 3, 3, 3]
+    DROPOUT: 0.5
+    OUT_CHANNELS: 256
+  BACKBONE: mobilenetv2
+  DECODER:
+    LOW_LEVEL_OUT_CHANNELS: 48
+    REFINE_CHANNELS: [256, 256]
+    REFINE_KERNEL_SIZE: [3, 3]
+  OUTPUT_STRIDE: 16
+  SYNC_BN: False
+  TYPE: DeepLabv3+
+  WEIGHT: 
+OPTIMIZER:
+  Adam:
+    betas: (0.9, 0.999)
+  BASE_LR: 0.001
+  MAX_GRAD_NORM: 0
+  SGD:
+    dampening: 0.0
+    momentum: 0.0
+    nesterov: False
+  TYPE: 
+  WEIGHT_DECAY: 0.0
+OUTPUT_DIR: @
+RESUME_STATES: True
+RNG_SEED: -1
+SCHEDULER:
+  CLIP_LR: 0.0
+  MAX_EPOCH: 1
+  MultiStepLR:
+    gamma: 0.1
+    milestones: ()
+  PolyLRDecay:
+    max_iter: 300
+    power: 0.9
+  StepLR:
+    gamma: 0.1
+    step_size: 0
+  TYPE: 
+TASK_NAME: Deeplabv3_Mapillary
+TEST:
+  AUGMENTATION: ()
+  BATCH_SIZE: 1
+  LOG_PERIOD: 0
+  WEIGHT: 
+TRAIN:
+  AUGMENTATION: ()
+  BATCH_SIZE: 1
+  CHECKPOINT_PERIOD: 0
+  FREEZE_BATCHNORM: False
+  FROZEN_PATTERNS: ()
+  LOG_PERIOD: 0
+VALIDATE:
+  AUGMENTATION: ()
+  BATCH_SIZE: 1
+  LOG_PERIOD: 0
+  METRIC: 
+  PERIOD: 0

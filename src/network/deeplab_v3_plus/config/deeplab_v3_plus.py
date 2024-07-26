@@ -1,6 +1,15 @@
-from __future__ import absolute_import
-from src.network.deeplab_v3_plus.config.base import CN, _C
 
+from __future__ import absolute_import
+
+# import sys
+# import os
+
+# # Add the src directory to PYTHONPATH
+# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '...')))
+
+
+# from src.network.deeplab_v3_plus.config.base import CN, _C
+from .base import CN, _C
 # Create public alias
 cfg = _C
 
@@ -10,7 +19,7 @@ _C.DATASET.NUM_CLASSES = 21
 
 _C.MODEL.TYPE = "DeepLabv3+"
 # Backbone used in DeepLabv3+
-_C.MODEL.BACKBONE = "resnet"
+_C.MODEL.BACKBONE = "mobilenet_v2"
 _C.MODEL.OUTPUT_STRIDE = 16
 
 # --------------------------------------------------------------------------- #
@@ -21,7 +30,8 @@ _C.MODEL.ASPP = CN()
 _C.MODEL.ASPP.OUT_CHANNELS = 256
 _C.MODEL.ASPP.ATROUS_CHANNELS = [256, 256, 256, 256]
 _C.MODEL.ASPP.ATROUS_KERNEL_SIZE = [1, 3, 3, 3]
-_C.MODEL.ASPP.ATROUS_DILATION = [1, 6, 12, 18]
+# _C.MODEL.ASPP.ATROUS_DILATION = [1, 6, 12, 18]
+_C.MODEL.ASPP.ATROUS_DILATION = [1, 1, 1, 1]
 _C.MODEL.ASPP.DROPOUT = 0.5
 
 # --------------------------------------------------------------------------- #

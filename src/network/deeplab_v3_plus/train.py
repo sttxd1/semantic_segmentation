@@ -3,6 +3,8 @@ import os.path as osp
 import sys
 
 sys.path.insert(0, osp.dirname(__file__) + '/..')
+sys.path.append('/home/st/scooter_ws/semantic_mapping_v2/src/network/core')
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import argparse
 import logging
@@ -37,7 +39,7 @@ def parse_args():
     parser.add_argument(
         '--cfg',
         dest='config_file',
-        default='',
+        default='/home/st/scooter_ws/semantic_mapping_v2/config/tong.yaml',
         metavar='FILE',
         help='path to config file',
         type=str,
