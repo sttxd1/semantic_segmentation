@@ -48,10 +48,14 @@ SCHEDULER:
     power: 0.9
 
 TRAIN:
-  BATCH_SIZE: 1
+  BATCH_SIZE: 8
   CHECKPOINT_PERIOD: 0
   LOG_PERIOD: 0
-  AUGMENTATION: []
+  AUGMENTATION:
+    - ToTensor
+    - Normalize: [0.485, 0.456, 0.406, 0.229, 0.224, 0.225, True]
+    - Resize: [256, 256]
+    - RandomHorizontalFlip: [0.5]
   FROZEN_PATTERNS: []
   FREEZE_BATCHNORM: false
 
