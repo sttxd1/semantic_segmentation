@@ -39,7 +39,7 @@ def parse_args():
     parser.add_argument(
         '--cfg',
         dest='config_file',
-        default='/home/st/scooter_ws/semantic_mapping_v2/config/tong.yaml',
+        default='/st-west/semantic_segmentation/config/tong.yaml',
         metavar='FILE',
         help='path to config file',
         type=str,

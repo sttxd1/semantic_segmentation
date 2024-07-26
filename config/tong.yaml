@@ -11,7 +11,7 @@ DATASET:
   NAME: "Mapillary"
   IN_CHANNELS: 0
   NUM_CLASSES: 0
-  ROOT_DIR: ''
+  ROOT_DIR: '/avl-west/Mapillary'
   TRAIN: ''
   VAL: ''
   TEST: ''
